@@ -39,3 +39,16 @@
 .read-the-docs {
   color: #888;
 }
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.inputNombre {
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  border: none
+}

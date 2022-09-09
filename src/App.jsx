@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
 import './App.css'
+
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import { setNombre } from './redux/actions';
 
 
@@ -14,7 +14,7 @@ function App() {
     setInputNombre(e.target.value);
   };
 
-  const handlerSubmit = (e) => {
+  const handleSubmit = () => {
     e.preventDefault();
     dispatch(setNombre(inputNombre))
   }
@@ -22,8 +22,8 @@ function App() {
   return (
     <div className="App">
       <h1>{nombre}</h1>
-      <form onSubmit={handlerSubmit}>
-        <input type="text" value={inputNombre} onChange={handleChange}/>
+      <form onSubmit={handleSubmit} className="formulario">
+        <input type="text" value={inputNombre} onChange={handleChange} className="inputNombre"/>
         <button>Cambiar Nombre</button>
       </form>
     </div>
