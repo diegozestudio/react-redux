@@ -24,13 +24,14 @@ export function getMovies(payload) {
     return async function (dispatch) {
         try {
             const url = `https://www.omdbapi.com/?apikey=33039b0b&s=${payload}`
-            const resp = await fetch(url)
-            const data = await resp.json()
-            return dispatch({ type: GET_MOVIES, payload: data.Search })
+            return fetch(url)
+            .then((response) => response.json())
+            .then((data) => dispatch({ type: GET_MOVIES, payload: data.Search }))
 
-            // fetch(`https://www.omdbapi.com/?apikey=33039b0b&s=${payload}`)
-            //     .then((response) => response.json())
-            //     .then((data) => { return dispatch({ type: GET_MOVIES, payload: data.Search }) })
+            // const resp = await fetch(url)
+            // const data = await resp.json()
+            // return dispatch({ type: GET_MOVIES, payload: data.Search })
+
         } catch (err) {
             console.log(err)
         }
