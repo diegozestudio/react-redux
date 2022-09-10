@@ -23,9 +23,14 @@ export function deletePersona(payload) {
 export function getMovies(payload) {
     return async function (dispatch) {
         try {
-            fetch(`https://www.omdbapi.com/?apikey=33039b0b&s=${payload}`)
-                .then((response) => response.json())
-                .then((data) => { return dispatch({ type: GET_MOVIES, payload: data.Search }) })
+            const url = `https://www.omdbapi.com/?apikey=33039b0b&s=${payload}`
+            const resp = await fetch(url)
+            const data = await resp.json()
+            return dispatch({ type: GET_MOVIES, payload: data.Search })
+
+            // fetch(`https://www.omdbapi.com/?apikey=33039b0b&s=${payload}`)
+            //     .then((response) => response.json())
+            //     .then((data) => { return dispatch({ type: GET_MOVIES, payload: data.Search }) })
         } catch (err) {
             console.log(err)
         }

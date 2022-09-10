@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMovies } from '../redux/actions'
-
+import '../App.css'
 function PeliculasAsync() {
   const dispatch = useDispatch()
   let peliculas = useSelector((store) => store.peliculas)
   let [inputBuscador, setInputBuscador] = useState('')
 
   const handleChange = (e) => {
-    e.preventDefault()
     setInputBuscador(e.target.value)
   }
 
@@ -18,9 +17,13 @@ function PeliculasAsync() {
     setInputBuscador('')
   }
 
-  useEffect(() => {
-    // dispatch(getMovies())
-  }, [dispatch])
+  const estilosImagenes = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    marginTop: '30px',
+    gap: '20px'
+  }
 
   return (
     <div>
@@ -31,18 +34,16 @@ function PeliculasAsync() {
             value={inputBuscador}
             onChange={handleChange}
             placeholder='Buscar...'
+            className='inputNombre'
           />
           <button>Buscar</button>
         </form>
       </div>
-
-      {peliculas?.map((peli) => {
-        return (
-          <span key={peli.imdbID}>
-            <img src={peli.Poster} alt='' />
-          </span>
-        )
-      })}
+      <div style={estilosImagenes}>
+        {peliculas?.map((peli) => {
+          return <img key={peli.imdbID} src={peli.Poster} alt='' />
+        })}
+      </div>
     </div>
   )
 }
