@@ -1,8 +1,13 @@
-import { SET_NOMBRE } from "./actions";
+import { ADD_PERSONA, DELETE_PERSONA, SET_APELLIDO, SET_NOMBRE } from "./actions";
 
 const initialState = {
-    nombre: "Diego"
+    nombre: "Diego",
+    apellido: "Zamora",
+    personas: [{nombre: "Diego", apellido: "Zamora", id: 1}, { nombre: "Lupi", apellido: "Lopez Pepa", id: 2 }],
+    cantidadPersonas: 3
 };
+
+
 
 function rootReducer(state = initialState, action) {
     switch (action.type) {
@@ -11,6 +16,25 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 nombre: action.payload
             };
+        case SET_APELLIDO:
+            return {
+                ...state,
+                apellido: action.payload
+            };
+
+        case ADD_PERSONA:
+            return {
+                ...state,
+                personas: state.personas.concat({...action.payload, id: state.cantidadPersonas}),
+                cantidadPersonas: state.cantidadPersonas + 1
+                // personas: [ ...state.personas, action.payload ]
+            }
+
+        case DELETE_PERSONA:
+            return{
+                ...state,
+                personas: state.personas.filter((persona) => persona.id !== action.payload)
+            }    
         default:
             return state;
     }
