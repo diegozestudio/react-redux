@@ -1,10 +1,11 @@
-import { ADD_PERSONA, DELETE_PERSONA, SET_APELLIDO, SET_NOMBRE } from "./actions";
+import { ADD_PERSONA, DELETE_PERSONA, GET_MOVIES, SET_APELLIDO, SET_NOMBRE } from "./actions";
 
 const initialState = {
     nombre: "Diego",
     apellido: "Zamora",
     personas: [{nombre: "Diego", apellido: "Zamora", id: 1}, { nombre: "Lupi", apellido: "Lopez Pepa", id: 2 }],
-    cantidadPersonas: 3
+    cantidadPersonas: 3,
+    peliculas: []
 };
 
 
@@ -35,6 +36,13 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 personas: state.personas.filter((persona) => persona.id !== action.payload)
             }    
+
+        case GET_MOVIES: {
+            return {
+                ...state,
+                peliculas: action.payload
+            }
+        }
         default:
             return state;
     }

@@ -1,11 +1,10 @@
 import './App.css'
-import Personas from './components/Personas'
+import PeliculasAsync from './components/PeliculasAsync'
 
 function App() {
   return (
     <div className='App'>
-      <Personas/>
-      
+      <PeliculasAsync />
     </div>
   )
 }
